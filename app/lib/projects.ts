@@ -20,23 +20,25 @@ const linksSchema = z
   })
   .default({});
 
-const projectSchema = z.object({
-  title: z.string().min(1).max(80),
-  category: categorySchema,
-  summary: z.string().min(40).max(240),
-  status: statusSchema,
-  role: z.string().min(1),
-  duration: z.string().min(1),
-  tech: z.array(z.string().min(1)).min(1).max(6),
-  links: linksSchema,
-  cover: z.string().optional(),
-  coverAlt: z.string().optional(),
-  order: z.number().int().default(999),
-  draft: z.boolean().default(false),
-}).refine(
-  (data) => !data.cover || (data.coverAlt && data.coverAlt.length > 0),
-  { message: "coverAlt is required when cover is set", path: ["coverAlt"] },
-);
+const projectSchema = z
+  .object({
+    title: z.string().min(1).max(80),
+    category: categorySchema,
+    summary: z.string().min(40).max(240),
+    status: statusSchema,
+    role: z.string().min(1),
+    duration: z.string().min(1),
+    tech: z.array(z.string().min(1)).min(1).max(6),
+    links: linksSchema,
+    cover: z.string().optional(),
+    coverAlt: z.string().optional(),
+    order: z.number().int().default(999),
+    draft: z.boolean().default(false),
+  })
+  .refine(
+    (data) => !data.cover || (data.coverAlt && data.coverAlt.length > 0),
+    { message: "coverAlt is required when cover is set", path: ["coverAlt"] },
+  );
 
 type ProjectFrontmatter = z.infer<typeof projectSchema>;
 
@@ -140,7 +142,7 @@ const PROJECT_STUBS: StubProject[] = [
       "Fixed-window rate limiting library for Express, Fastify, and NestJS with multiple backing stores.",
     status: "shipped",
     role: "Solo",
-    duration: "2024 – present",
+    duration: "2024 – 2025",
     tech: ["Node.js", "OSS"],
     links: {
       code: "https://github.com/0xRadioAc7iv/rate-limiter",
@@ -148,6 +150,23 @@ const PROJECT_STUBS: StubProject[] = [
       site: "https://rate-limiter.0xradioactiv.xyz/",
     },
     order: 1,
+    draft: false,
+  },
+  {
+    slug: "resp-codec",
+    title: "RESP Codec Library",
+    category: "libraries",
+    summary:
+      "A go library for encoding and decoding the Redis Serialization Protocol.",
+    status: "shipped",
+    role: "Solo",
+    duration: "2026",
+    tech: ["Go", "OSS"],
+    links: {
+      code: "https://github.com/0xRadioAc7iv/resp-codec",
+      goPkg: "https://pkg.go.dev/github.com/0xRadioAc7iv/resp-codec",
+    },
+    order: 2,
     draft: false,
   },
 ];
@@ -158,8 +177,8 @@ export async function getAllProjects(): Promise<Project[]> {
   const mdxProjects: Project[] = items
     .filter((project) => (isProd ? !project.draft : true))
     .map((item) => ({ ...item, hasDetail: true }));
-  const stubs: Project[] = PROJECT_STUBS.filter(
-    (s) => (isProd ? !s.draft : true),
+  const stubs: Project[] = PROJECT_STUBS.filter((s) =>
+    isProd ? !s.draft : true,
   ).map((s) => ({ ...s, body: "", sourceFile: "", hasDetail: false }));
   return [...mdxProjects, ...stubs].sort((a, b) => a.order - b.order);
 }

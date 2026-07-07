@@ -63,8 +63,11 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <Nav />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <footer className="border-t border-[color:var(--line)] mt-16">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-4">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">

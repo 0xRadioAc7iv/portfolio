@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpRight, Expand, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const GAMES = [
   {
@@ -30,9 +30,9 @@ const GAMES = [
     appId: "33230",
   },
   {
-    name: "Grand Theft Auto 4",
-    note: "Niko Bellic's story is peak.",
-    appId: "12210",
+    name: "Batman™: Arkham Origins",
+    note: "I'm Batman",
+    appId: "209000",
   },
   {
     name: "Portal",
@@ -57,7 +57,7 @@ const BLENDER_ITEMS = [
   },
   {
     image: "/blender/render-3.webp",
-    desc: "Realism",
+    desc: "S23 Ultra",
   },
   {
     image: "/blender/render-4.webp",
@@ -70,40 +70,15 @@ export function OtherAccordion() {
     src: string;
     alt: string;
   } | null>(null);
-  const [isBlenderDialogVisible, setIsBlenderDialogVisible] = useState(false);
   const blenderDialogRef = useRef<HTMLDialogElement | null>(null);
-  const blenderDialogCloseTimeoutRef = useRef<ReturnType<
-    typeof setTimeout
-  > | null>(null);
 
-  useEffect(() => {
-    return () => {
-      if (blenderDialogCloseTimeoutRef.current) {
-        clearTimeout(blenderDialogCloseTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const dialog = blenderDialogRef.current;
-    if (!dialog) return;
-    if (expandedBlenderImage && !dialog.open) {
-      dialog.showModal();
-      requestAnimationFrame(() => setIsBlenderDialogVisible(true));
-    }
-  }, [expandedBlenderImage]);
+  const openBlenderPreview = (src: string, alt: string) => {
+    setExpandedBlenderImage({ src, alt });
+    blenderDialogRef.current?.showModal();
+  };
 
   const closeBlenderDialog = () => {
-    const dialog = blenderDialogRef.current;
-    if (!dialog?.open) return;
-    setIsBlenderDialogVisible(false);
-    if (blenderDialogCloseTimeoutRef.current) {
-      clearTimeout(blenderDialogCloseTimeoutRef.current);
-    }
-    blenderDialogCloseTimeoutRef.current = setTimeout(() => {
-      blenderDialogCloseTimeoutRef.current = null;
-      if (dialog.open) dialog.close();
-    }, 200);
+    blenderDialogRef.current?.close();
   };
 
   return (
@@ -182,10 +157,7 @@ export function OtherAccordion() {
                   key={index}
                   type="button"
                   onClick={() =>
-                    setExpandedBlenderImage({
-                      src: item.image,
-                      alt: `Blender render ${index + 1}`,
-                    })
+                    openBlenderPreview(item.image, `Blender render ${index + 1}`)
                   }
                   className="group relative aspect-[1.02] overflow-hidden border border-[color:var(--line)] bg-[color:rgba(10,10,10,0.04)] transition-transform duration-200 hover:-translate-y-1"
                 >
@@ -212,22 +184,14 @@ export function OtherAccordion() {
 
       <dialog
         ref={blenderDialogRef}
-        className={`blender-preview-dialog${isBlenderDialogVisible ? " blender-preview-dialog-open" : ""}`}
+        className="blender-preview-dialog"
         aria-label="Blender render preview"
-        onCancel={(event) => {
-          event.preventDefault();
-          closeBlenderDialog();
-        }}
-        onClose={() => {
-          setIsBlenderDialogVisible(false);
-          setExpandedBlenderImage(null);
-        }}
         onClick={(event) => {
           if (event.target === event.currentTarget) closeBlenderDialog();
         }}
       >
         {expandedBlenderImage && (
-          <div className="blender-preview-dialog-content relative">
+          <div className="relative">
             <button
               type="button"
               onClick={closeBlenderDialog}

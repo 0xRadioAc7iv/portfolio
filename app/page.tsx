@@ -22,7 +22,7 @@ const EXPERIENCE = [
     company: "SendIN",
     role: "Full Stack Developer",
     from: "Jul 2025",
-    to: null,
+    to: "Jun 2026",
     link: "https://sendin.app",
     description:
       "Building across React/TanStack, NestJS, Stellar wallet flows, Redis-backed caching, AWS messaging, and CI/CD.",
@@ -39,8 +39,8 @@ const EXPERIENCE = [
 ];
 
 const SNAPSHOT = [
-  { label: "Current", value: "SendIN" },
-  { label: "Focus", value: "Systems, infra, auth" },
+  { label: "Status", value: "Open for roles", signal: true },
+  { label: "Focus", value: "Systems, infra, databases" },
   { label: "Approach", value: "Clean + performance-aware" },
   { label: "Outside code", value: "Cricket, Games and Astronomy" },
 ];
@@ -63,10 +63,7 @@ async function getStarMap(): Promise<Record<string, number>> {
 }
 
 export default async function Page() {
-  const [stars, projects] = await Promise.all([
-    getStarMap(),
-    getAllProjects(),
-  ]);
+  const [stars, projects] = await Promise.all([getStarMap(), getAllProjects()]);
   const groupedProjects = groupProjectsByCategory(projects);
 
   return (
@@ -75,6 +72,7 @@ export default async function Page() {
         <SectionIntro
           eyebrow="About"
           heading="I build systems that stay up."
+          level="h1"
         />
         <div className="hero-body">
           <div className="hero-bio flex flex-col gap-2">
@@ -95,7 +93,15 @@ export default async function Page() {
               {SNAPSHOT.map((item) => (
                 <div key={item.label} className="info-row">
                   <span className="info-label">{item.label}</span>
-                  <span className="info-value">{item.value}</span>
+                  <span className="info-value">
+                    {item.signal && (
+                      <span
+                        className="status-dot mr-2 align-middle"
+                        aria-hidden="true"
+                      />
+                    )}
+                    {item.value}
+                  </span>
                 </div>
               ))}
             </div>

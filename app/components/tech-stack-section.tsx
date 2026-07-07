@@ -3,10 +3,16 @@ import { TechStackCard } from "./tech-stack-card";
 const techStacks = [
   "Go",
   "TypeScript",
-  "Redis",
+  "Node.js",
+  "Python",
+  "NestJS",
   "PostgreSQL",
+  "Redis",
   "Docker",
   "AWS",
+  "Linux",
+  "Bash Scripting",
+  "React",
   "Next.js",
 ];
 

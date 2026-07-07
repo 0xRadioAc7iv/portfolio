@@ -1,9 +1,15 @@
 import type { ReactElement } from "react";
 import {
   SiDocker,
+  SiGnubash,
   SiGo,
+  SiLinux,
+  SiNestjs,
   SiNextdotjs,
+  SiNodedotjs,
   SiPostgresql,
+  SiPython,
+  SiReact,
   SiRedis,
   SiTypescript,
 } from "react-icons/si";
@@ -16,11 +22,17 @@ type TechStackCardProps = {
 export const techIconMap: Record<string, ReactElement> = {
   TypeScript: <SiTypescript />,
   Go: <SiGo />,
+  Python: <SiPython />,
   Docker: <SiDocker />,
   "Next.js": <SiNextdotjs />,
+  "Node.js": <SiNodedotjs />,
+  NestJS: <SiNestjs />,
+  React: <SiReact />,
   Redis: <SiRedis />,
   PostgreSQL: <SiPostgresql />,
   AWS: <FaAws />,
+  Linux: <SiLinux />,
+  "Bash Scripting": <SiGnubash />,
 };
 
 export function TechStackCard({ name }: TechStackCardProps) {

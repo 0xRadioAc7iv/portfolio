@@ -1,5 +1,6 @@
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
 import type { SerializeOptions } from "next-mdx-remote/dist/types";
 
 type HastNode = {
@@ -65,6 +66,14 @@ export const mdxCompileOptions: SerializeOptions = {
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "wrap" }],
+      [
+        rehypePrettyCode,
+        {
+          theme: { light: "min-light", dark: "vesper" },
+          keepBackground: false,
+          defaultLang: "plaintext",
+        },
+      ],
       rehypeExternalLinks,
     ],
   },

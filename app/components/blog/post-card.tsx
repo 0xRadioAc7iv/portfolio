@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { BlogPost } from "../../lib/blog";
 
@@ -17,7 +18,10 @@ export function PostCard({ post }: { post: BlogPost }) {
     >
       <div className="post-card-body">
         <h3 id={`post-${post.slug}-title`} className="post-card-title">
-          {post.title}
+          <span className="inline-flex items-center gap-1.5">
+            {post.title}
+            <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" />
+          </span>
         </h3>
         <p className="post-card-excerpt">{post.excerpt}</p>
         <p className="post-card-meta">

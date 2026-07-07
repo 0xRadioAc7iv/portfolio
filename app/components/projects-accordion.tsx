@@ -91,7 +91,7 @@ export function ProjectsAccordion({
         const CardInner = (
           <>
             <div className="flex h-full items-start border-r border-[color:var(--line)] py-5 pl-5">
-              <span className="font-mono text-[10px] text-[color:var(--fg-subtle)]">
+              <span className="row-index font-mono text-[10px] text-[color:var(--fg-subtle)]">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </div>
