@@ -164,7 +164,7 @@ const PROJECT_STUBS: StubProject[] = [
     tech: ["Go", "OSS"],
     links: {
       code: "https://github.com/0xRadioAc7iv/resp-codec",
-      goPkg: "https://pkg.go.dev/github.com/0xRadioAc7iv/resp-codec",
+      goPkg: "https://pkg.go.dev/github.com/0xRadioAc7iv/resp-codec/v2",
     },
     order: 2,
     draft: false,
