@@ -32,7 +32,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
   if (!project) return {};
-  const url = `https://0xradioactiv.xyz/project/${project.slug}`;
+  const url = `https://manavgadhiya.com/project/${project.slug}`;
   return {
     title: `${project.title} · Manav`,
     description: project.summary,
@@ -125,10 +125,16 @@ export default async function ProjectPage({
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={link.primary ? "button-primary" : "button-secondary"}
+                  className={
+                    link.primary ? "button-primary" : "button-secondary"
+                  }
                 >
                   {link.label}
-                  <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden="true" />
+                  <ArrowUpRight
+                    size={16}
+                    strokeWidth={1.75}
+                    aria-hidden="true"
+                  />
                   <span className="sr-only"> (opens in new tab)</span>
                 </a>
               ))}

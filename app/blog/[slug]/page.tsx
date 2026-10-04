@@ -32,7 +32,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
   if (!post) return {};
-  const url = `https://0xradioactiv.xyz/blog/${post.slug}`;
+  const url = `https://manavgadhiya.com/blog/${post.slug}`;
   return {
     title: post.title,
     description: post.excerpt,

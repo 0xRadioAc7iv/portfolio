@@ -34,7 +34,7 @@ export default function TwitterImage() {
             color: "#737373",
           }}
         >
-          0xradioactiv.xyz
+          manavgadhiya.com
         </span>
         <span
           style={{

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/my_resume.pdf",
+      "destination": "https://amtwylkz2lelm2ft.public.blob.vercel-storage.com/my_resume.pdf"
+    }
+  ]
+}

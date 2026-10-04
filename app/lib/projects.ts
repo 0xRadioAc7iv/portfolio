@@ -147,7 +147,7 @@ const PROJECT_STUBS: StubProject[] = [
     links: {
       code: "https://github.com/0xRadioAc7iv/rate-limiter",
       npm: "https://www.npmjs.com/package/@radioac7iv/rate-limiter",
-      site: "https://rate-limiter.0xradioactiv.xyz/",
+      site: "https://rate-limiter.manavgadhiya.com/",
     },
     order: 1,
     draft: false,

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Writing — Manav Gadhiya",
     description: "Notes on backend, systems, and the occasional side-quest.",
-    url: "https://0xradioactiv.xyz/blogs",
+    url: "https://manavgadhiya.com/blogs",
     type: "website",
   },
   twitter: {
@@ -36,9 +36,7 @@ export default async function BlogsPage() {
         />
 
         {posts.length === 0 ? (
-          <p className="empty-state">
-            Nothing here yet — writing in progress.
-          </p>
+          <p className="empty-state">Nothing here yet — writing in progress.</p>
         ) : (
           <div className="post-list">
             {posts.map((post) => (

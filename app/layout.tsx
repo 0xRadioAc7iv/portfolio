@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  metadataBase: new URL("https://0xradioactiv.xyz"),
+  metadataBase: new URL("https://manavgadhiya.com"),
   title: {
     default: "Manav Gadhiya",
     template: "%s | Manav Gadhiya",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://0xradioactiv.xyz",
+    url: "https://manavgadhiya.com",
     siteName: "Manav Gadhiya",
     title: "Manav Gadhiya — Backend Engineer & Systems Developer",
     description: DESCRIPTION,
@@ -54,7 +54,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
